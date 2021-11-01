@@ -1,0 +1,44 @@
+{
+    "name": "SkypeAlertingBot",
+    "version": "1.0.0",
+    "description": "Alerting for Grafana and Zabbix on Skype",
+    "author": "Amirmohammad Karimi",
+    "license": "MIT",
+    "main": "index.js",
+    "scripts": {
+        "pm2": "pm2 start processes.json --no-daemon",
+        "start": "node ./index.js",
+        "watch": "nodemon ./index.js",
+        "lint": "eslint .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/amirmohammadkariimi/SkypeAlertingBot.git "
+    },
+    "dependencies": {
+        "app-root-path": "^3.0.0",
+        "axios": "^0.22.0",
+        "bcryptjs": "^2.4.3",
+        "botbuilder": "^4.14.1",
+        "dotenv": "^8.6.0",
+        "kavenegar": "^1.1.4",
+        "mongoose": "^6.0.8",
+        "mongoose-timestamp": "^0.6.0",
+        "mongoose-unique-validator": "^2.0.4",
+        "morgan": "^1.10.0",
+        "pm2": "^4.5.6",
+        "restify": "~8.5.1",
+        "restify-errors": "^8.0.2",
+        "winston": "^3.3.3"
+    },
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-plugin-import": "^2.24.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.3.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "nodemon": "^2.0.13"
+    }
+}

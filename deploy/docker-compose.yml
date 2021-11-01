@@ -1,0 +1,34 @@
+version: '3.6'
+
+services:
+  mongo:
+    image: mongo
+    container_name: alertingbot_mongo
+    volumes:
+      - ./mongo/db:/data/db
+      - ./mongo/configdb:/data/configdb
+  alertingbot:
+    container_name: alertingbot_bot
+    build: ../
+    volumes:
+      - ../logs:/usr/src/app/logs
+    environment:
+      - MicrosoftAppId=<YOUR_MICROSOFT_APP_ID>
+      - MicrosoftAppPassword=<YOUR_MICROSOFT_APP_PASSWORD>
+      - MONGODB=mongodb://mongo:27017/alertingbot
+      - JWT=<JWT_SECRET>
+      - SECRET=<BOT_SECRET>
+    depends_on:
+      - mongo
+  nginx:
+    container_name: alertingbot_nginx
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "3001:80"
+      - "3002:443"
+    depends_on:
+      - alertingbot
+
