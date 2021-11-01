@@ -37,25 +37,39 @@ You can use this bot for sending your graylog, zabbix, grafana alerts to skype c
         ```bash
         docker-compose -f deploy/docker-compose.yml up --build -d
         ```
+- Create First Admin
+    ```bash
+    curl -H "Content-Type: application/json" --request POST --data '{"username":"<USERNAME>", "password":"<PASSWORD>", "isAdmin": "true"}' https://<BOTURL>:3002/api/register 
+    ```
 
 ## To use the bot
-- Grafana
+1. Add bot to your skype (Get the url from azure bot services)
+2. Login to bot by sending this message:
     ```
-    Create a webhook notification channel
-    Fill in the url with: https://<Your URL>:3002/api/notify/grafana/<YOURSECRET>
-    Choose POST method
+    <username>:<password>:all
     ```
-- Zabbix
+3. Send the bot URL and Create users for other team members
     ```
-    Create a Webhook Media Type
-    Fill in the url with: https://<Your URL>:3002/api/notify/zabbix/<YOURSECRET>
+    admin:create account:<newuser>:<password>:<isAdmin>
     ```
-- Graylog
-    ```
-    Create a Notification
-    Choose your Stream and Http alarm callback
-    Fill in the url with: https://<Your URL>:3002/api/notify/graylog/<YOURSECRET>
-    ```
+3. Add notification channels
+    - Grafana
+        ```
+        Create a webhook notification channel
+        Fill in the url with: https://<Your URL>:3002/api/notify/grafana/<YOURSECRET>
+        Choose POST method
+        ```
+    - Zabbix
+        ```
+        Create a Webhook Media Type
+        Fill in the url with: https://<Your URL>:3002/api/notify/zabbix/<YOURSECRET>
+        ```
+    - Graylog
+        ```
+        Create a Notification
+        Choose your Stream and Http alarm callback
+        Fill in the url with: https://<Your URL>:3002/api/notify/graylog/<YOURSECRET>
+        ```
 ## Testing the bot using Bot Framework Emulator
 
 [Bot Framework Emulator](https://github.com/microsoft/botframework-emulator) is a desktop application that allows bot developers to test and debug their bots on localhost or running remotely through a tunnel.
